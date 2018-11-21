@@ -1,27 +1,27 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React, { Component } from "react";
+import LifeCycle from "./components/lifecycle";
+import "./App.css";
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.launhClock();
+    this.state = {
+      count: 0,
+      time: new Date().toLocaleString()
+    };
+  }
+  launhClock() {
+    setInterval(() => {
+      let counter = this.state.count;
+      this.setState({
+        count: ++counter,
+        time: new Date().toLocaleString()
+      });
+    }, 1000);
+  }
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+    if (this.counter > 2) return;
+    return <LifeCycle time={this.state.time} />;
   }
 }
 
